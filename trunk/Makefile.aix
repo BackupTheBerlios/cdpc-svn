@@ -1,0 +1,18 @@
+# $Id: Makefile.aix 46 2008-01-07 16:46:16Z mmendez $
+# Works with both GNU and BSD make 
+#
+
+PROGNAME=	cdpc
+
+CC= gcc
+SOURCES=	main.c cdp.c output_plain.c output_csv.c dlpi_getmac.c
+
+CFLAGS= -g -Wall
+LDFLAGS= -L/usr/local/lib -lpcap -lodm -lcfg
+
+all:
+	${CC} ${CFLAGS} ${SOURCES} ${LDFLAGS} -o ${PROGNAME}
+
+clean:
+	rm -f *.o *~ ${PROGNAME} ${PROGNAME}.core core
+

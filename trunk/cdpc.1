@@ -1,0 +1,103 @@
+.Dd Dec, 22 2007
+.Os 
+.Dt "cdpc" 1 CON
+.Sh NAME
+.Nm cdpc - A Free Cisco Discovery Protocol Client
+.Nd 
+.Sh SYNOPSIS
+.Nm
+.Op Fl h 
+.Op Fl v
+.Op Fl V
+.Op Fl c
+.Op Fl p
+.Op Fl n
+.Op Ar \-d nic
+.Op Ar \-t time
+.Op Ar \-o file
+.Sh DESCRIPTION
+cdpc is a CDP 
+.Po
+Cisco Discovery Protocol 
+.Pc 
+client, and will report CDP information for a given interface.
+.Pp
+The following options can be used:
+.Pp
+.Fl h
+Show information about the different options.
+.br
+.Fl v
+Show version info.
+.br
+.Fl V
+Enable verbose mode.
+.br
+.Fl c
+Output information in csv mode.
+.br
+.Fl p
+Output information in plain text.
+.br
+.Fl n
+Use libpcap's internal timer instead of a setitimer(2) handler.
+.br
+.Ar \-d nic
+Capture packets from this network interface.
+.br
+.Ar \-t time
+Timeout in seconds. Defaults to 75.
+.br
+.Ar \-o file
+Output resulting data to file.
+.br
+.Sh USING CDPC
+You need to be root or use sudo to run this program. All errors are sent to 
+.Do
+stderr
+.Dc so that they don't interfere with data output. The
+.Do
+-o
+.Dc option will not send errors to the given file, but you can redirect descriptor 2 in your shell to achieve this. This program has
+been successfully tested on OpenBSD/sparc64, NetBSD/sparc64, FreeBSD/i386, FreeBSD/amd64, IRIX 6.5, Solaris 8, Solaris 9, Solaris 10, AIX 5.2 and Mac OS X 10.4.
+.Sh EXAMPLES
+Let's see where my Ultra2's 
+.Do
+hme0
+.Dc interface is connected to:
+.Pp
+mmendez@phoenix% sudo cdpc -d hme0
+.br
+Hostname: phoenix
+.br
+Interface: hme0
+.br
+Switch Name: cisco
+.br
+Switch Type: cisco WS-C2924-XL
+IOS version: Cisco Internetwork Operating System Software 
+IOS (tm) C2900XL Software (C2900XL-C3H2S-M), Version 12.0(5.2)XU, MAINTENANCE INTERIM SOFTWARE
+Copyright (c) 1986-2000 by cisco Systems, Inc.
+Compiled Mon 17-Jul-00 17:35 by ayounes
+.br
+Switch port: FastEthernet0/1
+.Pp
+Now I'd like to know where my NetBSD box's 
+.Do
+hme1
+.Dc
+connects to, setting the output to CSV mode and a timeout of 80 seconds:
+.Pp
+spitfire: {9} sudo cdpc -c -t 80 -d hme1
+.br
+spitfire.energyhq.be,hme1,cisco,FastEthernet0/2
+.br
+.Sh SEE ALSO
+.Xr pcap 3
+.Sh HISTORY
+cdpc was created to help system administrators troubleshoot networking issues in large environments where the amount of switch ports makes it 
+impractical to find out where a machine is connected to by hand.
+.Sh AUTHORS
+.An "Miguel Mendez" Aq mmendez@energyhq.be
+.Sh BUGS
+Sure.
