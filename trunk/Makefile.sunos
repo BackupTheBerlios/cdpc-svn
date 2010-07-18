@@ -1,4 +1,4 @@
-# $Id: Makefile.sunos 45 2008-01-07 16:41:37Z mmendez $
+# $Id$
 # Works with both GNU and BSD make 
 #
 

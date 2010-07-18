@@ -1,4 +1,4 @@
-# $Id: Makefile.aix 46 2008-01-07 16:46:16Z mmendez $
+# $Id$
 # Works with both GNU and BSD make 
 #
 

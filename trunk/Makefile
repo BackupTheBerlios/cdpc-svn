@@ -1,4 +1,4 @@
-# $Id: Makefile 27 2007-11-17 21:00:12Z mmendez $
+# $Id$
 # Works with both GNU and BSD make 
 #
 
